@@ -5,7 +5,6 @@
 struct Solution {}
 
 fn strdiv(s: &str, div: &str) -> bool {
-
     if div.is_empty() {
         return false;
     }
@@ -18,7 +17,7 @@ fn strdiv(s: &str, div: &str) -> bool {
     assert!(s.len() >= div.len());
 
     for i in 0..s.as_bytes().len() {
-        if s.as_bytes()[i] != div.as_bytes()[i%div.as_bytes().len()] {
+        if s.as_bytes()[i] != div.as_bytes()[i % div.as_bytes().len()] {
             return false;
         }
     }
@@ -28,9 +27,8 @@ fn strdiv(s: &str, div: &str) -> bool {
 impl Solution {
     pub fn gcd_of_strings(str1: String, str2: String) -> String {
         let mut result = "".to_string();
-        for len in 1..str1.as_bytes().len()+1 {
-            if str1.as_bytes().len() % len != 0 ||
-               str2.as_bytes().len() % len != 0 {
+        for len in 1..str1.as_bytes().len() + 1 {
+            if str1.as_bytes().len() % len != 0 || str2.as_bytes().len() % len != 0 {
                 continue;
             }
 
@@ -43,8 +41,7 @@ impl Solution {
     }
 }
 
-fn main() {
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {
@@ -52,12 +49,12 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let test_cases =[
+        let test_cases = [
             ("ABCABC".to_string(), "ABC".to_string(), "ABC".to_string()),
             ("ABABAB".to_string(), "ABAB".to_string(), "AB".to_string()),
             ("LEET".to_string(), "CODE".to_string(), "".to_string()),
             ("ABCD".repeat(100), "ABCD".to_string(), "ABCD".to_string()),
-            ("A".repeat(1000), "A".repeat(1000), "A".repeat(1000))
+            ("A".repeat(1000), "A".repeat(1000), "A".repeat(1000)),
         ];
 
         for (str1, str2, expected) in test_cases {

@@ -6,32 +6,31 @@
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
-  pub val: i32,
-  pub left: Option<Rc<RefCell<TreeNode>>>,
-  pub right: Option<Rc<RefCell<TreeNode>>>,
+    pub val: i32,
+    pub left: Option<Rc<RefCell<TreeNode>>>,
+    pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
 impl TreeNode {
-  #[inline]
-  pub fn new(val: i32) -> Self {
-    TreeNode {
-      val,
-      left: None,
-      right: None
+    #[inline]
+    pub fn new(val: i32) -> Self {
+        TreeNode {
+            val,
+            left: None,
+            right: None,
+        }
     }
-  }
 }
 
 struct Solution {}
 
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
 impl Solution {
     pub fn good_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-
         if let None = root {
-            return 0
+            return 0;
         }
 
         let root = root.unwrap();
@@ -42,7 +41,6 @@ impl Solution {
             let mut next = Vec::<(Rc<RefCell<TreeNode>>, i32)>::new();
 
             for (node_rc, max_val) in work {
-
                 let node = node_rc.borrow();
 
                 if node.val >= max_val {
@@ -63,8 +61,7 @@ impl Solution {
     }
 }
 
-fn main() {
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {
@@ -72,7 +69,6 @@ mod tests {
     use std::collections::VecDeque;
 
     fn gen_perfect_binary_tree() -> Rc<RefCell<TreeNode>> {
-
         let mut q = VecDeque::<(Rc<RefCell<TreeNode>>, i32)>::new();
         let root = Rc::new(RefCell::new(TreeNode::new(0)));
         q.push_back((root.clone(), 0));
@@ -87,10 +83,10 @@ mod tests {
             }
 
             if let Some(rc) = &node.left {
-                q.push_back((rc.clone(), depth+1));
+                q.push_back((rc.clone(), depth + 1));
             }
             if let Some(rc) = &node.right {
-                q.push_back((rc.clone(), depth+1));
+                q.push_back((rc.clone(), depth + 1));
             }
         }
         root
